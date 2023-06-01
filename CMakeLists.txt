@@ -8,22 +8,21 @@ ensure_micromamba(MICROMAMBA_BIN)
 
 # Configure an environment directly
 micromamba_environment(
-NAME environment
-CHANNELS
+NAME environment		# Name of the environment
+CHANNELS				# Channels to pull packages from
 	conda-forge
 	# robostack
-DEPENDENCIES
+DEPENDENCIES			# List of dependencies to install
 	spdlog
 )
 
-# Or configure it with a config file
+# Or configure it with a spec file
 micromamba_environment(
-	NAME configenv
-	SPEC_FILE config.yaml
-	RUN_CMD CONFIGENV_RUN
-	ENV_PATH CONFIGENV_PATH
-	NO_PREFIX_PATH
-	VERBOSE 3
+	NAME configenv			# Name of the environment
+	SPEC_FILE config.yaml   # Spec file to create the environment with
+	RUN_CMD CONFIGENV_RUN   # On return - ${CONFIGENV_RUN} will be a command that runs commands within the environment
+	ENV_PATH CONFIGENV_PATH # On return - ${CONFIGENV_PATH} will be the path to the environment
+	NO_PREFIX_PATH			# Do not add this environment to the CMAKE_PREFIX_PATH
 )
 
 # Now you can run commands within the micromamba environment at configuration or build time
