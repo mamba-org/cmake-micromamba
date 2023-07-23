@@ -44,6 +44,10 @@ function(ensure_micromamba MICROMAMBA_BIN)
       ${CMAKE_COMMAND} -E
       tar xvzf ${MICROMAMBA_PATH}/micromamba.tar.bz2 -- "bin/micromamba"
       WORKING_DIRECTORY ${MICROMAMBA_PATH} )
+      
+    find_program(_MICROMAMBA_BIN micromamba
+      PATHS ${MICROMAMBA_PATH}/bin
+    )
   endif()
   set (${MICROMAMBA_BIN} ${_MICROMAMBA_BIN} PARENT_SCOPE)
 endfunction()
